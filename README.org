@@ -1,0 +1,74 @@
+* Estructuras de Datos
+
+** Pilas
+
+** Colas
+
+** Listas
+
+** Árboles binarios y generales
+
+** Árboles binarios de búsqueda y tablas
+
+** Colas con prioridad y montículos
+
+** Grafos
+* El Concurso
+** Dinámicas
+* Tratamiento de la Entrada-Salida
+* Métodos algorítmicos
+
+** Divide y vencerás
+
+- Descomponer el problemas en subproblemas del mismo tipo que el original y combinar sus resultados.
+- Método recursivo.
+- Búsqueda binaria, repetición de pasos
+
+*** Problema
+
+** Método voraz
+
+Se trabaja con conjuntos de candidatos para encontrar la solución. A
+medida que se desarrolla el algoritmo, se van formando dos conjuntos:
+
+- El conjunto de candidatos considerados y seleccionados (que formarán parte de la solución)
+- El conjunto de candidatos descartados.
+
+Estos algoritmos se componenen de:
+
+- Una función de selección
+- Un test de factibilidad
+- Un test de solución
+
+Puede tratarse de un problema de optimización, que consistirá en
+buscar una solución óptima según una función objetivo.
+
+*** Problema
+
+** Programación dinámica
+
+Hay veces que la resolución mediante /Divide y vencerás/ lleva a la
+repetición de casos ya estudiados. Este problema incrementa la
+complejidad del algoritmo.
+
+La base de la programación dinámica es el uso de una tabla para ir
+almacenando los resultados que puedan usarse posteriormente.
+
+Principio de optimalidad de Bellman: /para conseguir una solución
+óptima basta considerar subsoluciones óptimas/.
+
+*** Problema
+
+** Vuelta atrás
+
+Cuando las anteriores técnicas no funcionan, habrá que recurrir a la
+fuerza bruta. Sin embargo, tendrá que cuidarse el espacio a explorar
+para poder descartar conjuntos de decisiones no válidas.
+
+La solución se orientará trabajando con árboles de exploración.
+
+Este árbol se podrá recorrer de varias maneras. Si se hace el
+recorrido en profundidad, se estará utilizando la técnica de /vuelta atrás/.
+
+** Ramificación y poda
+
