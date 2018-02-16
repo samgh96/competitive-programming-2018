@@ -1,3 +1,5 @@
+// https://www.geeksforgeeks.org/fast-io-in-java-in-competitive-programming/
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
