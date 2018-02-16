@@ -54,10 +54,15 @@ complejidad del algoritmo.
 La base de la programación dinámica es el uso de una tabla para ir
 almacenando los resultados que puedan usarse posteriormente.
 
+La programación dinámica normalmente se usa para resolver problemas de
+/Optimización/ y problemas de /Conteo/. 
+
 Principio de optimalidad de Bellman: /para conseguir una solución
 óptima basta considerar subsoluciones óptimas/.
 
 *** Problema
+
+**** Cambio de Monedas
 
 ** Vuelta atrás
 
