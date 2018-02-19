@@ -1,1 +1,7 @@
 *.class
+*.aux
+*.log
+*.nav
+*.out
+*.toc
+*.snm
