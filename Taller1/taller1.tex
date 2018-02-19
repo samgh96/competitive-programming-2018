@@ -15,6 +15,8 @@
 \usepackage{xspace}
 \usepackage{epsfig}
 \usepackage{color}
+\usepackage{listings}
+\usepackage[]{algorithm2e}
 \newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
 \graphicspath{{./data/}{./resources/}}
 \definecolor{mygray}{gray}{0.4}
@@ -47,13 +49,99 @@
 \section{Estructuras de Datos básicas}
 
 \section{Entrada/Salida}
+\begin{frame}{Entrada/Salida}
+  \begin{itemize}
+  \item La entrada nos da pistas de la modelización del problema. \pause
+  \item Es importante \textbf{no perder más tiempo del necesario con la E/S}. \pause
+  \item Se recomienda llevarla apuntada o en su defecto memorizarla.
+  \end{itemize}
 
+\end{frame}
+
+
+\begin{frame}{Entrada/Salida: Entrada}
+  \texttt{4 -> número de entradas \newline \pause
+    4 -> tamaño de vector \newline \pause
+    1 1 1 2 -> elementos de vector \newline \pause
+    2 \newline
+    1 1 \newline
+    5 \newline
+    1 1 2 2 3 \newline
+  }
+\end{frame}
+
+\begin{frame}{Entrada/Salida: Procesador genérico}
+  \begin{algorithm}[H]
+    \KwData{num\_entradas, tam\_vector, vector}
+    declarar variables\;
+    \While{num\_entradas \textgreater 0}{
+      leer tam\;
+      inicializar vector\;
+      \For{$i$ in \KwTo tam\_vector}{
+        vector[i] = leer\_entero\;
+      }
+      procesar\;
+      num\_entradas -= 1\;
+    }
+  \end{algorithm}
+\end{frame}
+\defverbatim[colored]\lstES{
+  \begin{lstlisting}[language=Java,basicstyle=\ttfamily,keywordstyle=\color{blue}]
+    public static void main(String[] args){
+      int n, len;
+      int [] arr;
+      FastReader fr = new FastReader();
+
+      n = fr.nextInt();
+      while (n > 0){
+        len = fr.nextInt();
+        arr = new int[len];
+        for (int i = 0; i < len; i++)
+        arr[i] = fr.nextInt();
+
+        System.out.println(findMajority(arr));
+        n--;
+      }
+    }
+  \end{lstlisting}
+}
+
+\begin{frame}{Entrada/Salida: Ejemplo}
+  \lstES
+\end{frame}
 \section{Métodos algorítmicos}
 
 \subsection{Divide y vencerás}
-
+\begin{frame}{Divide y vencerás: Concepto}
+  \begin{itemize}
+  \item Patrón de diseño de algoritmos de carácter recursivo. \pause
+  \item Descompone problemas en subproblemas de solución más sencilla. \pause
+  \item Se distinguen cuatro pasos: \pause
+    \begin{itemize}
+    \item Hallar el caso base del problema. \pause
+    \item Dividir la estructura de datos hasta encontrar el caso base. \pause
+    \item Aplicar la solución al caso base. \pause
+    \item Recomponer la estructura de datos ya resuelta. \pause
+    \end{itemize}
+  \item Ejemplos de este método: Mergesort, quicksort, búsqueda binaria...
+  \end{itemize}
+\end{frame}
 \subsection{Método voraz}
-
+\begin{frame}{Método voraz: Concepto}
+  \begin{itemize}
+  \item Este método algorítmico se basa en la elección de soluciones locales óptimas
+    con el fin de obtener soluciones globales óptimas. \pause
+  \item Útil en problemas de optimización pero difícil de probar su correctitud. \pause
+  \item Consiste en los siguientes fundamentos: \pause
+    \begin{itemize}
+    \item Disponemos de un conjunto de entrada (candidatos) y de otro de salida. \pause
+    \item Mediante heurísticas decidimos qué elemento entra en el conjunto de salida 
+      (y lo eliminamos de los candidatos). \pause
+    \item Para decidir los siguientes elementos los sometemos a un test de factibilidad. \pause
+    \end{itemize}
+    \item Ejemplos: A*, Prim, Kruskal, TSP...
+  \end{itemize}
+\end{frame}
 \subsection{Programación dinámica}
 
 \end{document}
