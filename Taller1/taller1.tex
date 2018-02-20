@@ -1,4 +1,4 @@
-\documentclass[10pt]{beamer}
+\documentclass[10pt,handout]{beamer}
 
 \usetheme{metropolis}
 \usepackage{appendixnumberbeamer}
@@ -9,8 +9,12 @@
 \usepackage{booktabs}
 \usepackage[scale=2]{ccicons}
 
+\usepackage{tikz}
+\usetikzlibrary{matrix}
+
 \usepackage{pgfplots}
 \usepgfplotslibrary{dateplot}
+
 
 \usepackage{xspace}
 \usepackage{epsfig}
@@ -21,6 +25,8 @@
 \newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
 \graphicspath{{./data/}{./resources/}}
 \definecolor{mygray}{gray}{0.4}
+
+\usepackage[normalem]{ulem}
 
 \title{Taller de programación competitiva}
 \subtitle{\textit{An amateur approach}}
@@ -40,14 +46,150 @@
 
 \maketitle
 
-\begin{frame}{Índice}
-  \setbeamertemplate{section in toc}[sections numbered]
-  \tableofcontents[hideallsubsections]
+\begin{frame}{¿Quiénes somos y por qué queremos hacer esto?}
+  \begin{columns}[onlytextwidth]
+    \begin{column}{0.35\textwidth}
+      \centering
+      \rule{100pt}{150pt}% Place your graphic here
+    \end{column}
+    \begin{column}{0.3\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{globo.png}
+    \end{column}
+    \begin{column}{0.35\textwidth}
+      En cuanto a informática:
+      \begin{itemize}
+        \item No me dedico a esto.
+        \item No me gusta Java.
+        \item Me gusta funcional.
+      \end{itemize}
+    \end{column}
+​  \end{columns}
 \end{frame}
 
-\section{Introduction}
+\begin{frame}{Índice}
+  \setbeamertemplate{section in toc}[sections numbered]
+  % \setbeamertemplate{subsection in toc}[subsections numbered]
+  \tableofcontents%[hideallsubsections]
+\end{frame}
 
-\section{Estructuras de Datos básicas}
+\section{Introducción}
+
+\begin{frame}{Algunos recursos}
+  \texttt{Comptetitive Programming 3 - Steve Halim, Felix Halim}
+  \texttt{https://cpbook.net/}
+  \emph{(Próximamente en la biblioteca de ACM)}
+  \begin{center}
+    \includegraphics[height=5cm]{cp3.png}
+  \end{center}
+  \texttt{https://www.geeksforgeeks.org/}
+\end{frame}
+
+\section{Estructuras de datos}
+
+\begin{frame}{El papel de las estructuras de datos}
+  Una buena estructura de datos nos facilita la modelización del problema.
+  \begin{itemize}
+  \item Son el campo de juego de nuestros algoritmos.
+  \item Conocer el lenguaje y sus librerías nos ahorra mucho trabajo.
+  \end{itemize}
+  Sin embargo, este ahorro no nos exime de la responsabilidad.
+  \begin{itemize}
+  \item Debemos saber la complejidad de las estructuras.
+  \item Debemos identificar cuáles son mejores para cada caso.
+  \item Debemos conocer sus puntos fuertes y débiles.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Estructuras de datos lineales}
+  Array estático:
+  \begin{itemize}
+  \item Soportado nativamente.
+  \item La estructura básica más utilizada.
+  \end{itemize}
+  Array dinámico:
+  \begin{itemize}
+  \item Cambiamos su tamaño en tiempo de ejecución.
+  \item \texttt{ArrayList} o \texttt{Vector}
+  \end{itemize}
+  Podemos usar algoritmos como \texttt{sort} o \texttt{binarySearch}
+  sobre las estructuras. (Librerías: \texttt{Arrays},
+  \texttt{Collections})
+\end{frame}
+
+\begin{frame}{Estructuras de datos lineales}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      Pilas:
+      \begin{itemize}
+      \item Last Input First Output (LIFO)
+      \item \texttt{Java Stack}
+      \end{itemize}
+
+      \vspace{20pt}
+
+      \centering\begin{tikzpicture}[draw, minimum width=1cm, minimum height=0.5cm]
+        \node[draw] (in) at (-1,2) {};
+        \node[draw] (out) at (1,2) {};
+        \matrix (queue)[matrix of nodes, nodes={draw, nodes={draw}}, nodes in empty cells]
+        {
+          ~~~~\\~~~~\\ \\ \\
+        };
+
+        \draw[-latex] (0.25,1) .. controls (0.25,1.5) and (1,1.5)  .. node[below right] {\small pop()} (out.south);
+        \draw[-latex] (in.south) .. controls (-1, 1.5) and (-0.25,1.5) .. node[below left] {\small push()} (-0.25,1);
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      Colas:
+      \begin{itemize}
+      \item First Input First Output (FIFO)
+      \item \texttt{Java Queue}
+      \end{itemize}
+      
+      \centering\begin{tikzpicture}[draw, minimum width=1cm, minimum height=0.5cm]
+        \node[draw] (in) at (-1,2) {};
+        \node[draw] (out) at (1,-2) {};
+        \matrix (queue)[matrix of nodes, nodes={draw, nodes={draw}}, nodes in empty cells]
+        {
+          \\ \\ \\ \\
+        };
+
+        \draw[-latex] (0.25,-1) .. controls (0.25,-1.25) and (1,-1.25) .. node[below left] {\small pop()} (out.north);
+        \draw[-latex] (in.south) .. controls (-1, 1.5) and (-0.25,1.5) .. node[below left] {\small push()} (-0.25,1);
+      \end{tikzpicture}
+
+      \vspace{-10pt}
+    \end{column}
+​  \end{columns}
+\end{frame}
+
+\begin{frame}{Estructuras de datos no lineales}
+  Árboles binarios de búsqueda:
+  \begin{itemize}
+  \item El subárbol izquierdo de un nodo contiene valores menores.
+  \item El subárbol derecho de un nodo contiene valores mayores.
+  \end{itemize}
+  \centering \includegraphics[height=4cm]{bst.png}
+
+  \texttt{Java TreeMap} $(clave \implies valor)$
+
+  \texttt{Java TreeSet} $(clave)$
+\end{frame}
+
+\begin{frame}{Otras estructuras de datos}
+  \begin{itemize}
+  \item Colas con priodidad (\emph{Heap})
+  \item Grafos
+    \begin{itemize}
+    \item Matriz de adyacencia
+    \item Lista de nodos adyacentes
+    \item Lista de aristas
+    \end{itemize}     
+  \item Más árboles.
+  \item ...
+  \end{itemize}
+\end{frame}
 
 \section{Entrada/Salida}
 \begin{frame}{Entrada/Salida}
@@ -56,7 +198,6 @@
   \item Es importante \textbf{no perder más tiempo del necesario con la E/S}. \pause
   \item Se recomienda llevarla apuntada o en su defecto memorizarla.
   \end{itemize}
-
 \end{frame}
 
 
@@ -184,6 +325,27 @@
   \item Ejemplos: A*, Prim, Kruskal, TSP...
   \end{itemize}
 \end{frame}
+
 \subsection{Programación dinámica}
 
+
+\begin{frame}{Programacion Dinámica}
+
+  Saber resolver problemas con Programación Dinámica es clave para la
+  programación competitiva.
+
+  \begin{itemize}
+  \item Hay veces que la resolución mediante \emph{Divide y vencerás}
+    lleva a la repetición de casos ya estudiados. Este problema
+    incrementa la complejidad del algoritmo.
+    
+  \item La \textbf{base} de la programación dinámica es el uso de una
+    \textbf{tabla} para ir almacenando los resultados que puedan
+    usarse posteriormente.
+
+  \item La programación dinámica normalmente se usa para resolver
+    problemas de \emph{Optimización} y problemas de \emph{Conteo}.
+
+  \end{itemize}
+\end{frame}
 \end{document}
