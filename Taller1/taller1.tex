@@ -1,4 +1,4 @@
-\documentclass[10pt,handout]{beamer}
+\documentclass[10pt]{beamer}
 
 \usetheme{metropolis}
 \usepackage{appendixnumberbeamer}
@@ -81,13 +81,31 @@
 
 \begin{frame}{Algunos recursos}
   \texttt{Comptetitive Programming 3 - Steve Halim, Felix Halim}
-  \texttt{https://cpbook.net/}
+  \href{https://cpbook.net/}{\texttt{https://cpbook.net/}}
   \emph{(Próximamente en la biblioteca de ACM)}
   \begin{center}
     \includegraphics[height=5cm]{cp3.png}
   \end{center}
-  \texttt{https://www.geeksforgeeks.org/}
+  \href{https://www.geeksforgeeks.org/}{\texttt{https://www.geeksforgeeks.org/}}
 \end{frame}
+
+\section{Complejidad}
+\begin{frame}{Complejidad: Concepto}
+  \begin{itemize}
+  \item La \textbf{complejidad computacional} es la cantidad de recursos requeridos para
+    computar un algoritmo.
+  \item Existe complejidad de \textbf{espacio} y de \textbf{tiempo}.
+  \item El crecimiento del tiempo de un algoritmo se mide con la $\mathcal{O}()$
+  \item El análisis de algoritmos es un tema denso.
+  \item Tenéis una buena cheatsheet en \href{http://bigocheatsheet.com/}{http://bigocheatsheet.com/}
+  \item En los concursos, si el problema se soluciona con un algoritmo típico se espera el óptimo.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[plain]{}
+  \centering \includegraphics[height=0.8\paperheight]{growth.png}
+\end{frame}
+
 
 \section{Estructuras de datos}
 
@@ -193,22 +211,6 @@
   \item Más árboles.
   \item ...
   \end{itemize}
-\end{frame}
-
-\section{Complejidad}
-\begin{frame}{Complejidad: Concepto}
-  \begin{itemize}
-  \item La \textbf{complejidad computacional} es la cantidad de recursos requeridos para
-    computar un algoritmo.
-  \item Existe complejidad de \textbf{espacio} y de \textbf{tiempo}.
-  \item El crecimiento del tiempo de un algoritmo se mide con la $\mathcal{O}()$
-  \item El análisis de algoritmos es un tema denso.
-  \item Tenéis una buena cheatsheet en \href{http://bigocheatsheet.com/}{http://bigocheatsheet.com/}
-  \item En los concursos, si el problema se soluciona con un algoritmo típico se espera el óptimo.
-  \end{itemize}
-\end{frame}
-\begin{frame}{Complejidad: Gráfico}
-  \centering \includegraphics[height=6cm]{growth.png}
 \end{frame}
 
 \section{Entrada/Salida}
@@ -388,7 +390,7 @@
     % weight labels. 
     \begin{pgfonlayer}{background}
         \pause
-        \foreach \source / \dest in {d/a,d/f,a/b,b/e,e/c,e/g}
+v        \foreach \source / \dest in {d/a,d/f,a/b,b/e,e/c,e/g}
             \path<+->[selected edge] (\source.center) -- (\dest.center);
         \foreach \source / \dest / \fr in {d/b/4,d/e/5,e/f/5,b/c/6,f/g/7}
             \path<\fr->[ignored edge] (\source.center) -- (\dest.center);
@@ -408,15 +410,16 @@
   \begin{itemize}
   \item Hay veces que la resolución mediante \emph{Divide y vencerás}
     lleva a la repetición de casos ya estudiados. Este problema
-    incrementa la complejidad del algoritmo.
+    incrementa la complejidad del algoritmo. \pause
 
   \item La \textbf{base} de la programación dinámica es el uso de una
     \textbf{tabla} para ir almacenando los resultados que puedan
-    usarse posteriormente.
+    usarse posteriormente. \pause
 
   \item La programación dinámica normalmente se usa para resolver
-    problemas de \emph{Optimización} y problemas de \emph{Conteo}.
+    problemas de \emph{Optimización} y problemas de \emph{Conteo}. \pause
 
+    \centering\includegraphics[width=0.9\textwidth]{dp.png}
   \end{itemize}
 \end{frame}
 \end{document}
