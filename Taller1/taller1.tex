@@ -48,9 +48,13 @@
 
 \begin{frame}{¿Quiénes somos y por qué queremos hacer esto?}
   \begin{columns}[onlytextwidth]
-    \begin{column}{0.35\textwidth}
+    \begin{column}{0.3\textwidth}
       \centering
-      \rule{100pt}{150pt}% Place your graphic here
+      \begin{itemize}
+      \item Somos presidente y vicepresidente del capítulo de ACM.
+      \item Somos veteranos en ser vapuleados en competiciones.
+      \item Experiencia instructiva y cura de humildad.
+      \end{itemize}
     \end{column}
     \begin{column}{0.3\textwidth}
       \centering
@@ -59,12 +63,12 @@
     \begin{column}{0.35\textwidth}
       En cuanto a informática:
       \begin{itemize}
-        \item No me dedico a esto.
-        \item No me gusta Java.
-        \item Me gusta funcional.
+      \item No nos dedicamos a esto.
+      \item No nos gusta Java.
+      \item Nos gusta funcional.
       \end{itemize}
     \end{column}
-​  \end{columns}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Índice}
@@ -146,7 +150,7 @@
       \item First Input First Output (FIFO)
       \item \texttt{Java Queue}
       \end{itemize}
-      
+
       \centering\begin{tikzpicture}[draw, minimum width=1cm, minimum height=0.5cm]
         \node[draw] (in) at (-1,2) {};
         \node[draw] (out) at (1,-2) {};
@@ -161,7 +165,7 @@
 
       \vspace{-10pt}
     \end{column}
-​  \end{columns}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Estructuras de datos no lineales}
@@ -185,7 +189,7 @@
     \item Matriz de adyacencia
     \item Lista de nodos adyacentes
     \item Lista de aristas
-    \end{itemize}     
+    \end{itemize}
   \item Más árboles.
   \item ...
   \end{itemize}
@@ -325,7 +329,58 @@
   \item Ejemplos: A*, Prim, Kruskal, TSP...
   \end{itemize}
 \end{frame}
+\pgfdeclarelayer{background}
+\pgfsetlayers{background,main}
 
+\begin{frame}{Método voraz: Diagrama de ejemplo (Prim)}
+
+%% Adjacency matrix of graph
+%% \  a  b  c  d  e  f  g
+%% a  x  7     5
+%% b  7  x  8  9  7
+%% c     8  x     5
+%% d  5  9     x 15  6
+%% e     7  5 15  x  8  9
+%% f           6  8  x 11
+%% g              9  11 x
+
+\tikzstyle{vertex}=[circle,fill=black!25,minimum size=20pt,inner sep=0pt]
+\tikzstyle{selected vertex} = [vertex, fill=red!24]
+\tikzstyle{edge} = [draw,thick,-]
+\tikzstyle{weight} = [font=\small]
+\tikzstyle{selected edge} = [draw,line width=5pt,-,red!50]
+\tikzstyle{ignored edge} = [draw,line width=5pt,-,black!20]
+
+\begin{figure}
+\begin{tikzpicture}[scale=1.8, auto,swap]
+    % Draw a 7,11 network
+    % First we draw the vertices
+    \foreach \pos/\name in {{(0,2)/a}, {(2,1)/b}, {(4,1)/c},
+                            {(0,0)/d}, {(3,0)/e}, {(2,-1)/f}, {(4,-1)/g}}
+        \node[vertex] (\name) at \pos {$\name$};
+    % Connect vertices with edges and draw weights
+    \foreach \source/ \dest /\weight in {b/a/7, c/b/8,d/a/5,d/b/9,
+                                         e/b/7, e/c/5,e/d/15,
+                                         f/d/6,f/e/8,
+                                         g/e/9,g/f/11}
+        \path[edge] (\source) -- node[weight] {$\weight$} (\dest);
+    % Start animating the vertex and edge selection. 
+    \foreach \vertex / \fr in {d/1,a/2,f/3,b/4,e/5,c/6,g/7}
+        \path<\fr-> node[selected vertex] at (\vertex) {$\vertex$};
+    % For convenience we use a background layer to highlight edges
+    % This way we don't have to worry about the highlighting covering
+    % weight labels. 
+    \begin{pgfonlayer}{background}
+        \pause
+        \foreach \source / \dest in {d/a,d/f,a/b,b/e,e/c,e/g}
+            \path<+->[selected edge] (\source.center) -- (\dest.center);
+        \foreach \source / \dest / \fr in {d/b/4,d/e/5,e/f/5,b/c/6,f/g/7}
+            \path<\fr->[ignored edge] (\source.center) -- (\dest.center);
+    \end{pgfonlayer}
+\end{tikzpicture}
+\end{figure}
+
+\end{frame}
 \subsection{Programación dinámica}
 
 
@@ -338,7 +393,7 @@
   \item Hay veces que la resolución mediante \emph{Divide y vencerás}
     lleva a la repetición de casos ya estudiados. Este problema
     incrementa la complejidad del algoritmo.
-    
+
   \item La \textbf{base} de la programación dinámica es el uso de una
     \textbf{tabla} para ir almacenando los resultados que puedan
     usarse posteriormente.
