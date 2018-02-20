@@ -17,6 +17,7 @@
 \usepackage{color}
 \usepackage{listings}
 \usepackage[]{algorithm2e}
+\usepackage{tikz}
 \newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
 \graphicspath{{./data/}{./resources/}}
 \definecolor{mygray}{gray}{0.4}
@@ -126,6 +127,47 @@
   \item Ejemplos de este método: Mergesort, quicksort, búsqueda binaria...
   \end{itemize}
 \end{frame}
+\begin{frame}{Divide y vencerás: Árbol de recursión}
+  \centering
+  \begin{tikzpicture}[level/.style={sibling distance=12mm}]
+    \node [draw] (z){n}
+    child [grow=right] {node (w) {} edge from parent[draw=none]
+      child [grow=right] {node (x) {Estructura de entrada} edge from parent[draw=none]
+      }
+    }
+    child {node [draw] (a) {$\frac{n}{2}$}
+      child {node [draw] (b) {$\frac{n}{2^2}$}
+        child {node {$\vdots$}
+          child {node [draw] (d) {$\frac{n}{2^k}$}}
+          child {node [draw] (e) {$\frac{n}{2^k}$}}
+        }
+        child {node {$\vdots$}}
+      }
+      child {node [draw] (g) {$\frac{n}{2^2}$}
+        child {node {$\vdots$}}
+        child {node {$\vdots$}}
+      }
+    }
+    child {node [draw] (j) {$\frac{n}{2}$}
+      child {node [draw] (k) {$\frac{n}{2^2}$}
+        child {node {$\vdots$}}
+        child {node {$\vdots$}}
+      }
+      child {node [draw] (l) {$\frac{n}{2^2}$}
+        child {node {$\vdots$}}
+        child {node (c){$\vdots$}
+          child {node [draw] (o) {$\frac{n}{2^k}$}}
+          child {node [draw] (p) {$\frac{n}{2^k}$}
+            child [grow=right] {node (q) {$=>$} edge from parent[draw=none]
+              child [grow=right] {node (q) {Caso base} edge from parent[draw=none]
+              }
+            }
+          }
+        }
+      }
+    };
+  \end{tikzpicture}
+\end{frame}
 \subsection{Método voraz}
 \begin{frame}{Método voraz: Concepto}
   \begin{itemize}
@@ -135,11 +177,11 @@
   \item Consiste en los siguientes fundamentos: \pause
     \begin{itemize}
     \item Disponemos de un conjunto de entrada (candidatos) y de otro de salida. \pause
-    \item Mediante heurísticas decidimos qué elemento entra en el conjunto de salida 
+    \item Mediante heurísticas decidimos qué elemento entra en el conjunto de salida
       (y lo eliminamos de los candidatos). \pause
     \item Para decidir los siguientes elementos los sometemos a un test de factibilidad. \pause
     \end{itemize}
-    \item Ejemplos: A*, Prim, Kruskal, TSP...
+  \item Ejemplos: A*, Prim, Kruskal, TSP...
   \end{itemize}
 \end{frame}
 \subsection{Programación dinámica}
