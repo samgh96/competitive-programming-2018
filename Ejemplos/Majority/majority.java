@@ -12,11 +12,11 @@ class Majority {
 	if (l == 2)
 	    return baseCase(a);
 	else if (l == 1)
-	    return -1; // útil si la entrada es impar
+	    return a[0]; // útil si la entrada es impar
 
 	/* subdivisión de la entrada (split) */
 	int elem1 = findMajority(Arrays.copyOfRange(a, 0, (int)Math.floor(l/2)));
-	int elem2 = findMajority(Arrays.copyOfRange(a, (int)Math.floor(l/2), l-1));
+	int elem2 = findMajority(Arrays.copyOfRange(a, (int)Math.floor(l/2), l));
 
 	/* unión del resultado de los casos base (merge) */
 	if (elem1 == -1 && elem2 >= 0)
